@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mo phong meo bat chuot va an chuot</title>
+</head>
+<body>
+    <script>
+        let Rat = function (nameRat,weightRat,speedRat) {
+            this.nameRat = nameRat;
+            this.weightRat = weightRat;
+            this.speedRat = speedRat;
+            this.status = true;
+
+            this.soundRat = function () {
+                return "chit chit";
+            }
+            this.getWeightRat = function (){
+                return this.weightRat;
+            }
+            this.setWeightRat = function (weightRat) {
+                this.weightRat = weightRat;
+            }
+            this.getSpeedRat = function (){
+                return this.speedRat;
+            }
+            this.getStatus = function () {
+                return this.status;
+            }
+            this.dieRat = function () {
+                this.status = false;
+            }
+        }
+        let Cat = function (nameCat, weightCat,speedCat) {
+            this.nameCat = nameCat;
+            this.weightCat = weightCat;
+            this.speedCat = speedCat;
+
+            this.soundCat = function () {
+                return "meo meo";
+            }
+            this.getWeightCat = function (){
+                return this.weightCat;
+            }
+
+            this.setWeightCat = function (weightCat) {
+                this.weightCat = weightCat;
+            }
+            this.getSpeedCat = function (){
+                return this.speedCat;
+            }
+            this.catchRat = function (rat) {
+                return this.speedCat > rat.getSpeedRat();
+            }
+            this.eatRat = function (rat) {
+                if (rat.getStatus()){
+                    alert("meo an chuot");
+                    this.weightCat = this.weightCat + rat.getWeightRat();
+                    rat.setWeightRat(0);
+                    rat.dieRat();
+                }else {
+                    alert("Chuot da chet, meo khong an")
+                }
+            }
+        }
+        let cat = new Cat("Tom",10,2);
+        let rat = new Rat("Jelly",5,1);
+        if (cat.catchRat(rat)){
+            alert("Da bat duoc chuot");
+            cat.eatRat(rat);
+        }else {
+            alert("Chuot chay nhanh hon")
+        }
+        alert(cat.getWeightCat());
+    </script>
+</body>
+</html>
